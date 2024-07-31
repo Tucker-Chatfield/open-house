@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const router = require('../controllers/listings');
 
 const listingSchema = new mongoose.Schema({
   streetAddress: {
@@ -22,9 +23,18 @@ const listingSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-  }
+  },
+  favoritedByUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+
 });
 
+
 const Listing = mongoose.model('Listing', listingSchema);
+
 
 module.exports = Listing;
